@@ -81,6 +81,7 @@ public class UserService {
         return getDtoFrom(user);
     }
 
+
     private List<UserDto> toDtoList(final List<User> userList) {
         Type listType = new TypeToken<List<UserDto>>() {
         }.getType();
@@ -100,5 +101,9 @@ public class UserService {
         userDto.setAvailable(user.getAvailable());
         userDto.setCreatedOn(user.getCreatedOn());
         return userDto;
+    }
+
+    public void delete(final Long id) {
+        userRepository.deleteById(id);
     }
 }

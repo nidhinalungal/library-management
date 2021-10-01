@@ -2,6 +2,7 @@ package com.nidhin.books.controller;
 
 
 import com.nidhin.books.controller.domain.BookDto;
+import com.nidhin.books.exception.BookNotFoundException;
 import com.nidhin.books.exception.DataValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class BookController {
     }
 
 
-    @PostMapping(path = "/api/command/books/{id}")
+    @PutMapping(path = "/api/command/books/{id}")
     public ResponseEntity<BookDto> updateBook(BookDto userDto)
             throws Exception {
 
@@ -58,5 +59,16 @@ public class BookController {
 
         final BookDto bookDto = bookService.findById(id);
         return new ResponseEntity<BookDto>(bookDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/api/books/{id}")
+    public ResponseEntity<Long> deleteUser(@PathVariable Long id) throws  BookNotFoundException {
+
+        if (bookService.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        bookService.delete(id);
+
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

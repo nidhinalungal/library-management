@@ -99,4 +99,8 @@ public class BookService {
         bookDto.setCreatedOn(book.getCreatedOn());
         return bookDto;
     }
+
+    public void delete(final Long id) {
+        bookRepository.deleteById(id);
+    }
 }

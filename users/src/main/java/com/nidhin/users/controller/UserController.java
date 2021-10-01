@@ -3,6 +3,7 @@ package com.nidhin.users.controller;
 
 import com.nidhin.users.controller.domain.UserDto;
 import com.nidhin.users.exception.DataValidationException;
+import com.nidhin.users.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class UserController {
     }
 
 
-    @PostMapping(path = "/api/command/user/{id}")
+    @PutMapping(path = "/api/command/user/{id}")
     public ResponseEntity<UserDto> updateUser(UserDto userDto)
             throws Exception {
 
@@ -58,5 +59,16 @@ public class UserController {
 
         final UserDto userDto = userService.findById(id);
         return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/api/users/{id}")
+    public ResponseEntity<Long> deleteUser(@PathVariable Long id) throws UserNotFoundException {
+
+        if (userService.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.delete(id);
+
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
