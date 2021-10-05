@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql-ms:
+    image: 'mysql:8.0.26'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=library
+    ports:
+      - "3307:3306"
+  users-ms:
+    image: users
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-ms:3306/library?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: "nidhin"
+      SPRING_DATASOURCE_PASSWORD: "root"
+    build:
+      context: "./"
+      dockerfile: "DockerFile"
+    depends_on:
+      - mysql-ms
