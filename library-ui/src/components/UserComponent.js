@@ -44,6 +44,8 @@ class UserComponent extends React.Component {
                                         <td>{user.emailId}</td>
                                         <td>{user.slots}</td>
                                         <td>{user.available}</td>
+                                        <button key= {user.id}>UPDATE</button>
+                                        <button key= {user.id}>DELETE</button>
 
                                         
 
