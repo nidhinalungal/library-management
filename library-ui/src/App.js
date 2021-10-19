@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import SvgIcon from '@mui/material/SvgIcon';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import './App.css';
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
@@ -16,7 +16,7 @@ import AdminsPage from "./pages/Admins";
 import MainPage from './pages/Home';
 
 
-function HomeIcon(props: SvgIconProps) {
+function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
