@@ -4,6 +4,7 @@ package com.nidhin.library.controller.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,27 +29,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/basicauth");
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        super.configure(http);
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/basicauth");
+//    }
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                //.formLogin().and()
-//                .httpBasic();
+//        http.csrf().disable();
+//        super.configure(http);
 //    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                //.formLogin().and()
+                .httpBasic();
+    }
 
 }

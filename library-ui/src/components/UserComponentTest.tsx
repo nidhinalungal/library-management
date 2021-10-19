@@ -14,7 +14,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import UserEditForm from '../form/UserEditForm';
 import UserService from "../services/UserService";
 
 
@@ -71,9 +70,9 @@ export default function UserComponentTest(props: any) {
       })
   }
 
-  function handleEdit(id: number){
-    console.log(id );
-    props.history.push("/api/users/find/"+id)
+  function handleEdit(id: number) {
+    console.log(id);
+    props.history.push("/api/users/find/" + id)
   }
 
 

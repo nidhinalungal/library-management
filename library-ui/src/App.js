@@ -1,21 +1,19 @@
+import { Button } from "@mui/material";
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import './App.css';
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import BookComponentTest from "./components/BookComponentTest";
 import LoginComponent from "./components/LoginComponent";
+import UserComponentTest from "./components/UserComponentTest";
+import BookEditForm from "./form/BookEditForm";
+import BookPostForm from "./form/BookPostForm";
+import ComingSoon from "./form/ComingSoon";
+import UserEditForm from "./form/UserEditForm";
+import UserPostForm from "./form/UserPostForm";
 import NotFoundPage from './pages/404';
 import AdminsPage from "./pages/Admins";
-import BooksPage from './pages/Books';
 import MainPage from './pages/Home';
-import UsersPage from './pages/Users';
-import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import UserPostForm from "./form/UserPostForm";
-import BookPostForm from "./form/BookPostForm";
-import UserComponentTest from "./components/UserComponentTest";
-import BookComponentTest from "./components/BookComponentTest";
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import { Button } from "@mui/material";
-import UserEditForm from "./form/UserEditForm";
-import BookEditForm from "./form/BookEditForm";
-import ComingSoon from "./form/ComingSoon";
 
 
 function HomeIcon(props: SvgIconProps) {
@@ -61,7 +59,7 @@ function App() {
         <Redirect to="404" />
       </Switch>
       <footer className='text-center'>
-      © 2021 Assessment, Nidhin Alungal.  All rights reserved
+        © 2021 Assessment, Nidhin Alungal.  All rights reserved
       </footer>
     </Router>
   );

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import BookService from '../services/BookService';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import React, { Component } from 'react';
+import BookService from '../services/BookService';
 
 export default class BookEditForm extends Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {
@@ -38,61 +38,60 @@ export default class BookEditForm extends Component {
 
     }
     render() {
-        const { title, author, shelfNumber,  copies, available } = this.state
         return (
             <div>
                 <Container maxWidth="sm">
-                <Box sx={{ bgcolor: '#cfe8fc', height: '70vh' }} >
-                    <div className="text-center">
-                        <br></br>
-                        <h2> Add New Book </h2>
-                        <form onSubmit={this.submitHandler}>
-                            <div>
-                                <TextField id="standard-basic" label="Title" variant="standard"
-                                    type='text' 
-                                    name='title'
-                                    onChange={this.changeHandler}
-                                    value={this.state.book.title}
-                                />
-                            </div>
-                            <div>
-                                <TextField id="standard-basic" label="Author" variant="standard"
-                                    type='text'
-                                    name='author'
-                                    onChange={this.changeHandler}
-                                    value={this.state.book.author}
-                                />
-                            </div>
-                            <div>
-                                <TextField id="standard-basic" label="Shelf Number" variant="standard"
-                                    type='text'
-                                    name='shelfNumber'
-                                    onChange={this.changeHandler}
-                                    value={this.state.book.shelfNumber}
-                                />
-                            </div>
-                            <div>
-                            <TextField id="standard-basic" label="Copies" variant="standard"
-                                    type='text'
-                                    name='copies'
-                                    onChange={this.changeHandler}
-                                    value={this.state.book.copies}
-                                />
-                            </div>
-                            <div>
-                            <TextField id="standard-basic" label="Available Slots" variant="standard"
-                                    type='text'
-                                    name='available'
-                                    onChange={this.changeHandler}
-                                    value={this.state.book.available}
-                                />
-                            </div>
+                    <Box sx={{ bgcolor: '#cfe8fc', height: '70vh' }} >
+                        <div className="text-center">
                             <br></br>
-                            <button type='submit'>Submit Now</button>
-                        </form>
-                    </div>
-                </Box>
-            </Container>
+                            <h2> Add New Book </h2>
+                            <form onSubmit={this.submitHandler}>
+                                <div>
+                                    <TextField id="standard-basic" label="Title" variant="standard"
+                                        type='text'
+                                        name='title'
+                                        onChange={this.changeHandler}
+                                        value={this.state.book.title}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField id="standard-basic" label="Author" variant="standard"
+                                        type='text'
+                                        name='author'
+                                        onChange={this.changeHandler}
+                                        value={this.state.book.author}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField id="standard-basic" label="Shelf Number" variant="standard"
+                                        type='text'
+                                        name='shelfNumber'
+                                        onChange={this.changeHandler}
+                                        value={this.state.book.shelfNumber}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField id="standard-basic" label="Copies" variant="standard"
+                                        type='text'
+                                        name='copies'
+                                        onChange={this.changeHandler}
+                                        value={this.state.book.copies}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField id="standard-basic" label="Available Slots" variant="standard"
+                                        type='text'
+                                        name='available'
+                                        onChange={this.changeHandler}
+                                        value={this.state.book.available}
+                                    />
+                                </div>
+                                <br></br>
+                                <button type='submit'>Submit Now</button>
+                            </form>
+                        </div>
+                    </Box>
+                </Container>
             </div>
         )
     }

@@ -1,8 +1,8 @@
-import axios from "axios"
-import { Component } from "react"
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import axios from "axios";
+import { Component } from "react";
 
 export class BookPostForm extends Component {
 
@@ -36,7 +36,7 @@ export class BookPostForm extends Component {
     }
 
     render() {
-        const { title, author, shelfNumber,  copies, available } = this.state
+        const { title, author, shelfNumber, copies, available } = this.state
         return (
             <Container maxWidth="sm">
                 <Box sx={{ bgcolor: '#cfe8fc', height: '70vh' }} >
@@ -69,7 +69,7 @@ export class BookPostForm extends Component {
                                 />
                             </div>
                             <div>
-                            <TextField id="standard-basic" label="Copies" variant="standard"
+                                <TextField id="standard-basic" label="Copies" variant="standard"
                                     type='text'
                                     name='copies'
                                     onChange={this.changeHandler}
@@ -77,7 +77,7 @@ export class BookPostForm extends Component {
                                 />
                             </div>
                             <div>
-                            <TextField id="standard-basic" label="Available Slots" variant="standard"
+                                <TextField id="standard-basic" label="Available Slots" variant="standard"
                                     type='text'
                                     name='available'
                                     onChange={this.changeHandler}

@@ -1,9 +1,7 @@
-import axios from "axios"
-import { Component } from "react"
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import { Button } from "@mui/material";
+import { Component } from "react";
 import UserService from "../services/UserService";
 
 
@@ -43,7 +41,6 @@ export class UserEditForm extends Component {
     }
 
     render() {
-        const { registerNumber, firstName, lastName, emailId, department, slots, available } = this.state
         return (
             <Container maxWidth="sm">
                 <Box sx={{ bgcolor: '#cfe8fc', height: '70vh' }} >

@@ -43,84 +43,84 @@ interface Irow {
   title: string;
   author: string;
   shelfNumber: string;
-  copies   : number;
+  copies: number;
   available: number;
 }
 
 export default function BookComponentTest(props: any) {
 
-    const [rows, setRows] = useState<Irow[]>([])
-    useEffect(() => {
-      BookService.getBooks().then((res) => {
-        setRows(res.data)
-      })
-    }, [])
-  
-    const handleDelete = (id: number) => {
-        BookService.deleteUser(id)
-        .then(response => {
-            BookService.getBooks().then((res) => {
-            setRows(res.data)
-          })
+  const [rows, setRows] = useState<Irow[]>([])
+  useEffect(() => {
+    BookService.getBooks().then((res) => {
+      setRows(res.data)
+    })
+  }, [])
+
+  const handleDelete = (id: number) => {
+    BookService.deleteUser(id)
+      .then(response => {
+        BookService.getBooks().then((res) => {
+          setRows(res.data)
         })
-    }
-  
-    const handleEdit = (id: number, data: any) => {
-        console.log(id );
-        props.history.push("/api/books/find/"+id)
-    }
-  
+      })
+  }
 
-    return (
-        <TableContainer component={Paper}>
+  const handleEdit = (id: number, data: any) => {
+    console.log(id);
+    props.history.push("/api/books/find/" + id)
+  }
 
-        <div className="AddButton">
-          <IconButton
-            href="/api/command/book"
-            aria-label="add" size="large" color="success" className="fa-plus-circle"
-            sx={{ fontSize: 20, }}>
-            Add New Book &nbsp;
-            <AddCircleIcon />
-          </IconButton>
-        </div>
-  
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="right">Id</StyledTableCell>
-              <StyledTableCell align="right">Title</StyledTableCell>
-              <StyledTableCell align="right">Author</StyledTableCell>
-              <StyledTableCell align="right">Shelf Number</StyledTableCell>
-              <StyledTableCell align="right">Copies</StyledTableCell>
-              <StyledTableCell align="right">Available</StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-  
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell align="right">{row?.id}</StyledTableCell>
-                <StyledTableCell align="right" component="th" scope="row">{row?.title}</StyledTableCell>
-                <StyledTableCell align="right">{row?.author}</StyledTableCell>
-                <StyledTableCell align="right">{row?.shelfNumber}</StyledTableCell>
-                <StyledTableCell align="right">{row?.copies}</StyledTableCell>
-                <StyledTableCell align="right">{row?.available}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <Stack spacing={2} direction="row-reverse">
-                    <Button variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={() => handleDelete(row.id)}>
-                      Delete
-                    </Button>
-                    <Button size="medium" variant="outlined" startIcon={<EditIcon />} onClick={() => handleEdit(row.id, row)}>
-                      Edit
-                    </Button>
-                  </Stack>
-                </StyledTableCell>
-              </StyledTableRow>
-  
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    )
+
+  return (
+    <TableContainer component={Paper}>
+
+      <div className="AddButton">
+        <IconButton
+          href="/api/command/book"
+          aria-label="add" size="large" color="success" className="fa-plus-circle"
+          sx={{ fontSize: 20, }}>
+          Add New Book &nbsp;
+          <AddCircleIcon />
+        </IconButton>
+      </div>
+
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align="right">Id</StyledTableCell>
+            <StyledTableCell align="right">Title</StyledTableCell>
+            <StyledTableCell align="right">Author</StyledTableCell>
+            <StyledTableCell align="right">Shelf Number</StyledTableCell>
+            <StyledTableCell align="right">Copies</StyledTableCell>
+            <StyledTableCell align="right">Available</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <StyledTableRow key={row.id}>
+              <StyledTableCell align="right">{row?.id}</StyledTableCell>
+              <StyledTableCell align="right" component="th" scope="row">{row?.title}</StyledTableCell>
+              <StyledTableCell align="right">{row?.author}</StyledTableCell>
+              <StyledTableCell align="right">{row?.shelfNumber}</StyledTableCell>
+              <StyledTableCell align="right">{row?.copies}</StyledTableCell>
+              <StyledTableCell align="right">{row?.available}</StyledTableCell>
+              <StyledTableCell align="right">
+                <Stack spacing={2} direction="row-reverse">
+                  <Button variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={() => handleDelete(row.id)}>
+                    Delete
+                  </Button>
+                  <Button size="medium" variant="outlined" startIcon={<EditIcon />} onClick={() => handleEdit(row.id, row)}>
+                    Edit
+                  </Button>
+                </Stack>
+              </StyledTableCell>
+            </StyledTableRow>
+
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
 }
