@@ -13,6 +13,15 @@ class BookService {
     deleteUser(id){
         return axios.delete(BOOKS_REST_API_URL+'/'+id)
     }
+    
+    updateBook(id, data) { 
+        return axios.put('http://localhost:8082/api/command/books/'+id, data);
+    }
+
+    
+    getBook(id) { 
+        return axios.get('http://localhost:8082/api/books/find/'+id);
+    }
 }
 
 export default new BookService();

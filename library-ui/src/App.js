@@ -13,6 +13,9 @@ import UserComponentTest from "./components/UserComponentTest";
 import BookComponentTest from "./components/BookComponentTest";
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { Button } from "@mui/material";
+import UserEditForm from "./form/UserEditForm";
+import BookEditForm from "./form/BookEditForm";
+import ComingSoon from "./form/ComingSoon";
 
 
 function HomeIcon(props: SvgIconProps) {
@@ -29,7 +32,7 @@ function App() {
     <Router>
       <div className="App-header">
         <br></br>
-        <h1 className="text-center">Library Management Application</h1>
+        <h1 className="text-center">Libro Library Management</h1>
         <div className="AddButton">
           <Button href="/api">
             <HomeIcon color="disabled" sx={{ fontSize: 40 }} />
@@ -48,6 +51,10 @@ function App() {
         <AuthenticatedRoute path="/api/admins" exact component={AdminsPage} />
         <AuthenticatedRoute path="/api/command/user" exact component={UserPostForm} />
         <AuthenticatedRoute path="/api/command/book" exact component={BookPostForm} />
+        <AuthenticatedRoute path="/api/users/find/:id" exact component={UserEditForm} />
+        <AuthenticatedRoute path="/api/books/find/:id" exact component={BookEditForm} />
+        <AuthenticatedRoute path="/api/comingsoon" exact component={ComingSoon} />
+
 
 
         <Route exact component={NotFoundPage} />

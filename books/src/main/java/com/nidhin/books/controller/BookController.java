@@ -33,7 +33,7 @@ public class BookController {
 
 
     @PutMapping(path = "/api/command/books/{id}")
-    public ResponseEntity<BookDto> updateBook(BookDto userDto)
+    public ResponseEntity<BookDto> updateBook(@RequestBody BookDto userDto)
             throws Exception {
 
         userDto = bookService.updateBook(userDto);

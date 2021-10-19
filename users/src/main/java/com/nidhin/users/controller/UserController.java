@@ -33,7 +33,7 @@ public class UserController {
 
 
     @PutMapping(path = "/api/command/user/{id}")
-    public ResponseEntity<UserDto> updateUser(UserDto userDto)
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto)
             throws Exception {
 
         userDto = userService.updateUser(userDto);

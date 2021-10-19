@@ -47,7 +47,7 @@ interface Irow {
   available: number;
 }
 
-export default function BookComponentTest() {
+export default function BookComponentTest(props: any) {
 
     const [rows, setRows] = useState<Irow[]>([])
     useEffect(() => {
@@ -66,8 +66,8 @@ export default function BookComponentTest() {
     }
   
     const handleEdit = (id: number, data: any) => {
-      // UserService.editUser(id,data)
-      // console.log(id )
+        console.log(id );
+        props.history.push("/api/books/find/"+id)
     }
   
 

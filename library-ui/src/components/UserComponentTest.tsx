@@ -14,6 +14,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import UserEditForm from '../form/UserEditForm';
 import UserService from "../services/UserService";
 
 
@@ -52,7 +53,7 @@ interface Irow {
 
 
 
-export default function UserComponentTest() {
+export default function UserComponentTest(props: any) {
 
   const [rows, setRows] = useState<Irow[]>([])
   useEffect(() => {
@@ -70,9 +71,9 @@ export default function UserComponentTest() {
       })
   }
 
-  const handleEdit = (id: number, data: any) => {
-    // UserService.editUser(id,data)
-    // console.log(id )
+  function handleEdit(id: number){
+    console.log(id );
+    props.history.push("/api/users/find/"+id)
   }
 
 
@@ -119,7 +120,7 @@ export default function UserComponentTest() {
                   <Button variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={() => handleDelete(row.id)}>
                     Delete
                   </Button>
-                  <Button size="medium" variant="outlined" startIcon={<EditIcon />} onClick={() => handleEdit(row.id, row)}>
+                  <Button size="medium" variant="outlined" startIcon={<EditIcon />} onClick={() => handleEdit(row.id)}>
                     Edit
                   </Button>
                 </Stack>
