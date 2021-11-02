@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "users-service"
+  labels:
+    app: "users-service"
+spec:
+  selector:
+    matchLabels:
+      app: "users-service"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "users-service"
+    spec:
+      containers:
+        - name: "users-service"
+          image: nidhinalungal/users
+          ports:
+            - containerPort: 8081
+              name: "users-service"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "users-service"
+spec:
+  selector:
+    app: "users-service"
+  type: LoadBalancer
+  ports:
+    - name: "users-service"
+      protocol: TCP
+      port: 8081
+      targetPort: 8081

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "libro-ui"
+  labels:
+    app: "libro-ui"
+spec:
+  selector:
+    matchLabels:
+      app: "libro-ui"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "libro-ui"
+    spec:
+      containers:
+        - name: "libro-ui"
+          image: nidhinalungal/libro-ui
+          ports:
+            - containerPort: 3000
+              name: "libro-ui"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "libro-ui"
+spec:
+  selector:
+    app: "libro-ui"
+  type: LoadBalancer
+  ports:
+  - name: "libro-ui"
+    protocol: TCP
+    port: 80
+    targetPort: 3000

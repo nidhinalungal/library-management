@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "books-service"
+  labels:
+    app: "books-service"
+spec:
+  selector:
+    matchLabels:
+      app: "books-service"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "books-service"
+    spec:
+      containers:
+        - name: "books-service"
+          image: nidhinalungal/books
+          ports:
+            - containerPort: 8082
+              name: "books-service"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "books-service"
+spec:
+  selector:
+    app: "books-service"
+  type: LoadBalancer
+  ports:
+    - name: "books-service"
+      protocol: TCP
+      port: 8082
+      targetPort: 8082

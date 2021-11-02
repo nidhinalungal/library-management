@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "library-service"
+  labels:
+    app: "library-service"
+spec:
+  selector:
+    matchLabels:
+      app: "library-service"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "library-service"
+    spec:
+      containers:
+        - name: "library-service"
+          image: nidhinalungal/library
+          ports:
+            - containerPort: 8083
+              name: "library-service"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "library-service"
+spec:
+  selector:
+    app: "library-service"
+  type: LoadBalancer
+  ports:
+    - name: "library-service"
+      protocol: TCP
+      port: 8083
+      targetPort: 8083
